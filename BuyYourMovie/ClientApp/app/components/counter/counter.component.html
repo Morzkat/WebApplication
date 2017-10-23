@@ -1,7 +1,8 @@
-<h1>Counter</h1>
+<h1>Works Counter!!</h1>
 
-<p>This is a simple example of an Angular component.</p>
+<div *ngFor="let post of posts">
 
-<p>Current count: <strong>{{ currentCount }}</strong></p>
+    <h3>{{post.title}}</h3>
+    <h4>{{post.body}}</h4>
 
-<button (click)="incrementCounter()">Increment</button>
+</div>
