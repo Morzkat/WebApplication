@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
 
@@ -17,13 +18,16 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="ClientApp\app\components\NewFolder1\**" />
+    <Compile Remove="ClientApp\app\components\NewFolder\**" />
+    <Compile Remove="ClientApp\app\NewFolder\**" />
     <Content Remove="ClientApp\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\app\components\NewFolder1\" />
-    <Folder Include="ClientApp\app\components\NewFolder\" />
-    <Folder Include="ClientApp\app\NewFolder\" />
+    <EmbeddedResource Remove="ClientApp\app\components\NewFolder1\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\NewFolder\**" />
+    <EmbeddedResource Remove="ClientApp\app\NewFolder\**" />
+    <None Remove="ClientApp\app\components\NewFolder1\**" />
+    <None Remove="ClientApp\app\components\NewFolder\**" />
+    <None Remove="ClientApp\app\NewFolder\**" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

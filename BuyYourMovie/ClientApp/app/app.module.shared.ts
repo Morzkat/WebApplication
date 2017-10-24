@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 //App Components
 import { AppComponent } from './components/app/app.component';
@@ -12,7 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
 
 //App services
-import { UserService } from './services/user/user.service';
+import { UserService } from './services/user.service';
+
+//
 
 //routes of the app 
 const appRoutes:Routes =
@@ -37,7 +40,9 @@ const appRoutes:Routes =
         CommonModule,
         HttpModule,
         FormsModule,
-        RouterModule.forRoot(appRoutes)
+        RouterModule.forRoot(appRoutes),
+        HttpClientModule
+        
     ],
 
     providers:
