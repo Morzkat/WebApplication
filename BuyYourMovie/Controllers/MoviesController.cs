@@ -42,10 +42,10 @@ namespace BuyYourMovie.Controllers
 
         // POST api/movies
         [HttpPost]
-        public void Post([FromBody]Movie value)
+        public Boolean Post([FromBody]Movie value)
         {
             Movie m = new Movie(1, "pelicula", "asdsadsadsad", "aaaa", "2015/05/26", "asdasd", 5);
-            data.Post(m);
+            return data.Post(value);
         }
 
         // PUT api/movies/5

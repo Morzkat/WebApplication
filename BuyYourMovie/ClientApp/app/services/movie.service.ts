@@ -45,15 +45,17 @@ import { MovieComponent } from './../components/movie/movie.component';
 
     postMovie(movie: IMovie)
     {
-        let body = JSON.stringify(movie);
-        let header = new Headers();
-        header.append('Content-Type', 'application/json');
+        let body = JSON.stringify({ 'foo': 'bar' });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append('Accept', 'application/json');
+        headers.append('Content-Type', 'application/json');
 
-        let options = new RequestOptions({ headers: header });
+        let options = new RequestOptions({ headers: headers });
 
-        return this.http2.post('http://localhost:31280/api/movies', body)
-            .subscribe(resp => resp);
+        return this.http.post('http://localhost:31280/api/movies', movie)
+            .subscribe(res => res.json());
     }
+
 
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure

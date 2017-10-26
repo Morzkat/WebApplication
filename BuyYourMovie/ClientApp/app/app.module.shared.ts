@@ -12,6 +12,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
 import { MovieComponent } from './components/movie/movie.component';
+import { UserComponent } from './components/user/user.component';
 
 //App services
 import { MovieService } from './services/movie.service';
@@ -24,6 +25,7 @@ const appRoutes:Routes =
     { path: 'home', component: HomeComponent },
     { path: 'category', component: CategoryComponent },
     { path: 'newMovie', component: MovieComponent },
+    { path: 'signIn', component: UserComponent },
     { path: '**', redirectTo: 'home' }
 ]
 
@@ -34,7 +36,8 @@ const appRoutes:Routes =
         NavMenuComponent,
         HomeComponent,
         CategoryComponent,
-        MovieComponent
+        MovieComponent,
+        UserComponent
     ],
 
     imports:
