@@ -1,8 +1,60 @@
+<!--modal-->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <form (ngSubmit)="putMovie(id.value, movieName.value, movieSipnosis.value, movieGender.value, moviePublished.value, image.value, starts.value)">
+                    <input type="hidden" #id value="{{updateMovie.id}}" />
+                    <label>Nombre de la pelicula</label><br />
+                    <input type="text" class="form-control" value = "{{updateMovie.movieName}}" #movieName /><br />
+
+                    <label>Sipnosis de la pelicula</label><br />
+                    <textarea #movieSipnosis class="form-control" value = "{{updateMovie.movieSipnosis}}" rows="4" cols="80"></textarea><br />
+
+                    <label>Nombre de la pelicula</label><br />
+                    <select #movieGender>
+                        <option value="Accion">Accion</option>
+                        <option value="Sci-Fic">Sci-Fic</option>
+                    </select><br />
+
+                    <label>Publicada el: </label><br />
+                    <input type="text" class="form-control" #moviePublished value = "{{updateMovie.moviePublished}}" /><br />
+
+                    <label> Selecciona una imagen de portada </label><br />
+                    <input type="text" class="form-control" #image value = "{{updateMovie.image}}"/><br />
+
+                    <label> Puntua esta pelicula </label><br />
+                    <input type="number" class="form form-control" value = "{{updateMovie.starts}}" #starts /><br />
+
+                    <input type="submit" class="btn btn-success" value="Update Movie" />
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 <!-- Page Content -->
 <div class="container">
-
     <h1 class="my-4 text-center text-lg-left">Movies</h1>
-
+        
     <div *ngFor="let movie of movies">
         
         <div class="col-lg-4 col-md-6 col-xs-8">
@@ -10,7 +62,10 @@
                 <h4>{{movie.movieName}}</h4>
                 <img class="img-fluid img-thumbnail" src="http://placehold.it/300x390" alt="">
             </a>
+
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" (click)="movieToPut(movie)">Modify</button>
+           <button class="btn btn-danger" (click) ="deleteMovie(movie.id)">Eliminar</button>
         </div>
-    
     </div>
 </div>

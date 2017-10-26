@@ -50,15 +50,16 @@ namespace BuyYourMovie.Controllers
 
         // PUT api/movies/5
         [HttpPut("{id}")]
-        public bool Put(int id, [FromBody]Movie value)
+        public Boolean Put(int id, [FromBody]Movie value)
         {
-            return true;
+            return data.Put(value, id);
         }
 
         // DELETE api/movies/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public Boolean Delete(int id)
         {
+            return data.DeleteById(id);
         }
     }
 }

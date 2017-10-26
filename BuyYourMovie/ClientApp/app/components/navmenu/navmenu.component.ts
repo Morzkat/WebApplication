@@ -4,5 +4,9 @@ import { Component } from '@angular/core';
     selector: 'nav-menu',
     templateUrl: './navmenu.component.html'
 })
-export class NavMenuComponent {
+export class NavMenuComponent
+{
+    constructor()
+    {
+    }
 }

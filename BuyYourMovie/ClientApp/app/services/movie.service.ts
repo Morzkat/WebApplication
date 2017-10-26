@@ -45,19 +45,25 @@ import { MovieComponent } from './../components/movie/movie.component';
 
     postMovie(movie: IMovie)
     {
-        let body = JSON.stringify({ 'foo': 'bar' });
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
-
-        let options = new RequestOptions({ headers: headers });
-
-        return this.http.post('http://localhost:31280/api/movies', movie)
+        return this.http.post(UrlConstans.serverWithApiUrl + "movies", movie)
             .subscribe(res => res.json());
     }
 
+    putMovie(movie: IMovie, id: number): Observable<any>
+    {
+        return this.http.put(UrlConstans.serverWithApiUrl + "movies/" + id, movie)
+            .map(res => res.json());
+    }
 
-    private handleError(err: HttpErrorResponse) {
+    deleteMovie(id: number)
+    {
+        return this.http.delete(UrlConstans.serverWithApiUrl + "movies/" + id)
+            .map(res => res.json());
+    }
+
+
+    private handleError(err: HttpErrorResponse)
+    {
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console
         let errorMessage = '';

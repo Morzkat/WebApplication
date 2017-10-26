@@ -27,8 +27,10 @@ export class MovieComponent
 
     addNewMovie(movieName: string, movieSipnosis: string, movieGender: string, moviePublished: string, image: string, starts:number)
     {
+        let id: number = 1;
       this.newMovie =
-        {
+          {
+            id,
             movieName,
             movieSipnosis,
             moviePublished,

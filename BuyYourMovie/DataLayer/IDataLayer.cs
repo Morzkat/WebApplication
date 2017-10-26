@@ -10,7 +10,7 @@ namespace BuyYourMovie.DataLayer
         IEnumerable<ModelsClass> GetAll();
         ModelsClass GetById(int id);
         bool DeleteById(int id);
-        bool Put(ModelsClass updateLog);
+        bool Put(ModelsClass updateLog, int id);
         bool Post(ModelsClass newLog);
     }
 }
