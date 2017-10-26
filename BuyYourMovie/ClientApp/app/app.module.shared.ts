@@ -11,18 +11,19 @@ import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
+import { MovieComponent } from './components/movie/movie.component';
 
 //App services
+import { MovieService } from './services/movie.service';
 import { UserService } from './services/user.service';
-
-//
 
 //routes of the app 
 const appRoutes:Routes =
 [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'category', component:CategoryComponent },
+    { path: 'category', component: CategoryComponent },
+    { path: 'newMovie', component: MovieComponent },
     { path: '**', redirectTo: 'home' }
 ]
 
@@ -32,7 +33,8 @@ const appRoutes:Routes =
         AppComponent,
         NavMenuComponent,
         HomeComponent,
-        CategoryComponent
+        CategoryComponent,
+        MovieComponent
     ],
 
     imports:
@@ -47,7 +49,8 @@ const appRoutes:Routes =
 
     providers:
     [
-        UserService
+        UserService,
+        MovieService
     ]
 })
 export class AppModuleShared {

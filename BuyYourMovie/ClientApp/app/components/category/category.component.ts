@@ -1,7 +1,13 @@
+//Angular Components
 import { Component } from '@angular/core';
 
+//Services
+import { MovieService } from './../../services/movie.service';
 
-import { UserService } from './../../services/user.service';
+//interfaces
+import { IMovie } from './../../Interfaces/movie.interface';
+
+//Components
 @Component({
     selector: 'category-app',
     templateUrl: './category.component.html'
@@ -9,39 +15,26 @@ import { UserService } from './../../services/user.service';
 
 export class CategoryComponent
 {
-    posts: Array<Post>;
-    some: Array<string> = [];
+    //All movies
+    movies: IMovie;
 
-    constructor(private userService:UserService)
+    constructor(private movieService:MovieService)
     {
 
     }
 
+    //
     ngOnInit()
     {
-    
-
-        this.userService.getPosts().subscribe((post) => {
-            this.posts = post;
-        });
-
-        this.userService.getT().subscribe((some) =>
+        //
+        this.movieService.getMovieById(19).subscribe((movie) =>
         {
-            this.some = some;
-            console.log(some);
-            console.log(this.some);
+            console.log(movie);
+            this.movies = movie; 
         });
 
         
     }
 
 
-}
-
-interface Post {
-
-    id: number,
-    body: string,
-    title: string,
-    userId: number
 }

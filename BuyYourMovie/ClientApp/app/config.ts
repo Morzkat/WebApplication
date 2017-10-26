@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 
-export class Configuration
+export class UrlConstans
 {
 
-    public server = "http://localhost:31280/";
-    public apiUrl = "api/";
-
-    public serverWithApiUrl = this.server + this.apiUrl;
-
+    public static get getServer(): string { return "http://localhost:31280/" };
+    public static get getApiUrl(): string { return "api/" };
+    public static get serverWithApiUrl(): string { return this.getServer + this.getApiUrl };
 }

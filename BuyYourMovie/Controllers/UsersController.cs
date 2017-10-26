@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using BuyYourMovie.Models;
+using BuyYourMovie.DataLayer;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BuyYourMovie.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class UsersController : Controller
     {
+        IConfiguration configuration;
+        MovieData data;
+
+        public UsersController(IConfiguration _configuration)
+        {
+            configuration = _configuration;
+            data = new MovieData(configuration);
+        }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Movie> Get()
         {
-            return new string[] { "value1", "value2" };
+            return data.GetAll();
         }
 
         // GET api/values/5
@@ -27,8 +38,11 @@ namespace BuyYourMovie.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IEnumerable<Movie> Post([FromBody]string value)
         {
+           
+
+            return data.GetAll();
         }
 
         // PUT api/values/5
