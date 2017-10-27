@@ -22,19 +22,13 @@ namespace BuyYourMovie.Controllers
             configuration = _configuration;
             data = new UserData(configuration);
         }
+
         // GET: api/users
         [Route("token")]
         [HttpGet("{token}")]
         public User Get(string token)
         {   return data.GetByToken(token);  }
-
-        // GET api/users/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
+        
         // POST api/users
         [HttpPost]
         public User Post([FromBody]User value)

@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 //Movie Service
 import { MovieService } from './../../services/movie.service';
+import { UserService } from './../../services/user.service';
+
 
 /*Interfaces*/
 //Movie Interface
 import { IMovie } from './../../Interfaces/movie.interface';
+import { IUser } from './../../Interfaces/user.interface';
+
 
 @Component({
     selector: 'home',
@@ -13,9 +17,14 @@ import { IMovie } from './../../Interfaces/movie.interface';
 })
 export class HomeComponent implements OnInit
 {
+    //for movies
     movies: Array<IMovie>;
-    updateMovie: IMovie;
+    updatedMovie: IMovie;
 
+    //user
+    User: IUser;
+    //user status
+    userStatus: boolean = false;
     constructor(private movieService: MovieService )
     {
 
@@ -45,7 +54,7 @@ export class HomeComponent implements OnInit
 
     putMovie(id:number, movieName: string, movieSipnosis: string, movieGender: string, moviePublished: string, image: string, starts: number)
     {
-        this.updateMovie =
+        this.updatedMovie =
             {
                 id,
                 movieName,
@@ -55,7 +64,7 @@ export class HomeComponent implements OnInit
                 image,
                 starts
             };
-        this.movieService.putMovie(this.updateMovie, this.updateMovie.id)
+        this.movieService.putMovie(this.updatedMovie, this.updatedMovie.id)
             .subscribe((response) =>
             {
                 console.log(response);
@@ -67,6 +76,6 @@ export class HomeComponent implements OnInit
 
     movieToPut(oldMovie: IMovie)
     {
-        this.updateMovie = oldMovie;
+        this.updatedMovie = oldMovie;
     }
 }

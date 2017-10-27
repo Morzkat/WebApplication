@@ -18,10 +18,14 @@ import { MovieComponent } from './../components/movie/movie.component';
 @Injectable()
 export class UserService
 {
+    private static userStatus: boolean = true;
 
-    constructor(private http: Http, private http2: HttpClient) {
+    constructor(private http: Http, private http2: HttpClient)
+    {}
 
-    }
+    //User status getter and setter
+    public static get getUserStatus(): boolean { return this.userStatus }
+    public static set SetUserStatus(status: boolean) { this.userStatus = status }
 
     getUser(token: string): Observable<IUser>
     {
