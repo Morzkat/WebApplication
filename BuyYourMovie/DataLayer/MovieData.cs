@@ -95,12 +95,14 @@ namespace BuyYourMovie.DataLayer
                     //Create a new movie
                     Movie movie = new Movie
                         (
-                        Convert.ToInt32(reader["id"]), 
+                        Convert.ToInt32
+                        (
+                        reader["id"]), 
                         reader["movieName"].ToString(), 
                         reader["movieSipnosis"].ToString(), 
                         reader["movieGender"].ToString(), 
                         reader["moviePublished"].ToString(), 
-                        reader["movieImage"].ToString(), 
+                        reader["image"].ToString(), 
                         Convert.ToInt32(reader["starts"])
                         );
                     //Add the movie to the list of movies
@@ -126,7 +128,7 @@ namespace BuyYourMovie.DataLayer
                 //Params for the search / Made a real_escape_string
                 SqlParameter sqlParameter = new SqlParameter("@id", id);
                 //A Sql command o Query|Assign the query
-                SqlCommand command = new SqlCommand("SELECT * FROM Movie WHERE id = @id",connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM Movie WHERE id = @id", connection);
                 //Add the parameter to the query
                 command.Parameters.Add(sqlParameter);
 
@@ -144,7 +146,7 @@ namespace BuyYourMovie.DataLayer
                             reader["movieSipnosis"].ToString(),
                             reader["movieGender"].ToString(),
                             reader["moviePublished"].ToString(),
-                            reader["movieImage"].ToString(),
+                            reader["image"].ToString(),
                             Convert.ToInt32(reader["starts"])
                             );        
                     }
@@ -157,19 +159,19 @@ namespace BuyYourMovie.DataLayer
             return movie;
         }
 
-        public IEnumerable<Movie> GetByMovieName(string movieName)
+        public IEnumerable<Movie> GetByGender(string movieGender)
         {
             List<Movie> movies = new List<Movie>();
 
-            if (movieName != " ")
+            if (movieGender != " ")
             {
                 //Open the connection
                 connection.Open();
 
                 //Params for the search / Made a real_escape_string
-                SqlParameter sqlParameter = new SqlParameter("@movieName", movieName);
+                SqlParameter sqlParameter = new SqlParameter("@movieGender", movieGender);
                 //A Sql command o Query|Assign the query
-                SqlCommand command = new SqlCommand("SELECT * FROM Movie WHERE movieName = @movieName", connection); ;
+                SqlCommand command = new SqlCommand("SELECT * FROM Movie WHERE movieGender = @movieGender", connection); ;
                 //
                 
                 //Add the parameter to the query
@@ -189,7 +191,7 @@ namespace BuyYourMovie.DataLayer
                             reader["movieSipnosis"].ToString(),
                             reader["movieGender"].ToString(),
                             reader["moviePublished"].ToString(),
-                            reader["movieImage"].ToString(),
+                            reader["image"].ToString(),
                             Convert.ToInt32(reader["starts"])
                             );
 
@@ -222,7 +224,7 @@ namespace BuyYourMovie.DataLayer
 
                 //Assign the query
                var query = "insert into Movie (movieName, movieSipnosis, movieGender, " +
-                    "moviePublished, movieImage, starts) VALUES (@movieName, @movieSipnosis, @movieGender, " +
+                    "moviePublished, image, starts) VALUES (@movieName, @movieSipnosis, @movieGender, " +
                     "@moviePublished, @movieImage, @starts);";
                 //Add the parameter to the query
 
@@ -282,7 +284,7 @@ namespace BuyYourMovie.DataLayer
 
                 //Assign the query
                 var query = "UPDATE Movie SET movieName = @movieName, MovieSipnosis = @movieSipnosis, movieGender = @movieGender," +
-                            "moviePublished = @moviePublished, movieImage = @movieImage, starts = @starts WHERE id = @id; ";
+                            "moviePublished = @moviePublished, image = @movieImage, starts = @starts WHERE id = @id; ";
                           
                 //Add the parameter to the query
 

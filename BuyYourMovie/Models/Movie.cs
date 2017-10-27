@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-//Movie model
+//Users model
 namespace BuyYourMovie.Models
 {
     public class Movie : ModelsClass

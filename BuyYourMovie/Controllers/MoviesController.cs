@@ -7,8 +7,6 @@ using Microsoft.Extensions.Configuration;
 using BuyYourMovie.DataLayer;
 using BuyYourMovie.Models;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace BuyYourMovie.Controllers
 {
   
@@ -33,27 +31,21 @@ namespace BuyYourMovie.Controllers
         public Movie Get(int id)
         {   return data.GetById(id);    }
 
-        // GET api/movies/5
-        [Route("ByMovieName")]
-        [HttpGet("{movieName}")]
-        public IEnumerable<Movie> Get(string movieName)
-        {    return data.GetByMovieName(movieName);    }
-
+        // GET api/movies/ByGender?movieGender
+        [Route("ByGender")]
+        [HttpGet("{movieGender}")]
+        public IEnumerable<Movie> Get(string movieGender)
+        {    return data.GetByGender(movieGender);    }
 
         // POST api/movies
         [HttpPost]
         public Boolean Post([FromBody]Movie value)
-        {
-            Movie m = new Movie(1, "pelicula", "asdsadsadsad", "aaaa", "2015/05/26", "asdasd", 5);
-            return data.Post(value);
-        }
+        {   return data.Post(value);   }
 
         // PUT api/movies/5
         [HttpPut("{id}")]
         public Boolean Put(int id, [FromBody]Movie value)
-        {
-            return data.Put(value, id);
-        }
+        {   return data.Put(value, id);    }
 
         // DELETE api/movies/5
         [HttpDelete("{id}")]

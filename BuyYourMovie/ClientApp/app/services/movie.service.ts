@@ -31,9 +31,9 @@ import { MovieComponent } from './../components/movie/movie.component';
 
     }
 
-    getByCategory(category: string): Observable<Array<IMovie>>
+    getByGender(movieGender: string): Observable<Array<IMovie>>
     {
-        return this.http.get(UrlConstans.serverWithApiUrl + "movies/" + category)
+        return this.http.get(UrlConstans.serverWithApiUrl + "movies/ByGender?movieGender=" + movieGender)
             .map(response => response.json() as Array<IMovie>);
     }
 

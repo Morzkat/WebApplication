@@ -16,7 +16,7 @@ import { IMovie } from './../../Interfaces/movie.interface';
 export class CategoryComponent
 {
     //All movies
-    movies: IMovie;
+    movies: Array<IMovie>;
 
     constructor(private movieService:MovieService)
     {
@@ -26,15 +26,17 @@ export class CategoryComponent
     //
     ngOnInit()
     {
-        //
-        this.movieService.getMovieById(19).subscribe((movie) =>
-        {
-            console.log(movie);
-            this.movies = movie; 
-        });
-
-        
+        this.getMoviesByGender("Accion");
     }
 
+    getMoviesByGender(gender:string)
+    {
+        this.movieService.getByGender(gender).subscribe((movie) =>
+        {   this.movies = movie;    });
+    }
 
+    getGender(gender:string)
+    {
+        this.getMoviesByGender(gender);
+    }
 }

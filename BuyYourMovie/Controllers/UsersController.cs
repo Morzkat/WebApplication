@@ -15,43 +15,45 @@ namespace BuyYourMovie.Controllers
     public class UsersController : Controller
     {
         IConfiguration configuration;
-        MovieData data;
+        UserData data;
 
         public UsersController(IConfiguration _configuration)
         {
             configuration = _configuration;
-            data = new MovieData(configuration);
+            data = new UserData(configuration);
         }
-        // GET: api/values
-        [HttpGet]
-        public IEnumerable<Movie> Get()
+        // GET: api/users
+        [HttpGet("{token}")]
+        public User Get(string token)
         {
-            return data.GetAll();
+            string userEmail = "test@test.com";
+            string userPw = "1234";
+            return data.GetByUserNameAndPw(userEmail, userPw);
         }
 
-        // GET api/values/5
+        // GET api/users/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/values
+        // POST api/users
         [HttpPost]
-        public IEnumerable<Movie> Post([FromBody]string value)
+        public IEnumerable<User> Post([FromBody]string value)
         {
            
 
             return data.GetAll();
         }
 
-        // PUT api/values/5
+        // PUT api/users/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/users/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
