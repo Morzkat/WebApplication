@@ -30,7 +30,48 @@ namespace BuyYourMovie.DataLayer
 
         public bool DeleteById(int id)
         {
-            throw new NotImplementedException();
+            Boolean status = false;
+            if (id != 0)
+            {
+
+                //Params for the insert / Made a real_escape_string
+                SqlParameter sqlParameter = new SqlParameter("@id", id);
+
+                //Assign the query
+                var query = "delete from Users where id = @id";
+
+                //Add the parameter to the query
+
+                using (SqlConnection conne = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = conne;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = query;
+                        //Parameters added to the command
+                        command.Parameters.Add(sqlParameter);
+
+                        try
+                        {
+                            //Open the connection
+                            conne.Open();
+                            command.ExecuteNonQuery();
+                            //Close the connection
+                            conne.Close();
+                            status = true;
+                        }
+
+                        catch (SqlException e)
+                        {
+                            Console.WriteLine("Error BD");
+                            return false;
+                        }
+                    }
+                }
+
+            }
+            return status;
         }
 
         public IEnumerable<User> GetAll()
@@ -175,7 +216,55 @@ namespace BuyYourMovie.DataLayer
 
         public bool Put(User updateLog, int id)
         {
-            throw new NotImplementedException();
+            bool status = false;
+            if (updateLog != null && id != 0 )
+            {
+
+                //Params for the insert / Made a real_escape_string
+                SqlParameter[] sqlParameter = new SqlParameter[4];
+                //Adding all params
+                sqlParameter[0] = new SqlParameter("@userEmail", updateLog.userEmail);
+                sqlParameter[1] = new SqlParameter("@userPw", updateLog.userPw);
+                sqlParameter[2] = new SqlParameter("@level", updateLog.level);
+                sqlParameter[3] = new SqlParameter("@id", id);
+                //Assign the query
+                var query = "UPDATE Users SET userEmail = @userEmail, userPw = @userPw, level = @level WHERE id = @id;";
+                //Add the parameter to the query
+
+                using (SqlConnection conne = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = conne;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = query;
+                        //Parameters added to the command
+                        command.Parameters.Add(sqlParameter[0]);
+                        command.Parameters.Add(sqlParameter[1]);
+                        command.Parameters.Add(sqlParameter[2]);
+                        command.Parameters.Add(sqlParameter[3]);
+
+                        try
+                        {
+                            //Open the connection
+                            conne.Open();
+                            command.ExecuteNonQuery();
+                            //Close the connection
+                            conne.Close();
+                            //
+                            status = true;
+                        }
+
+                        catch (SqlException e)
+                        {
+                            Console.WriteLine("Error BD");
+                        }
+                    }
+                }
+
+            }
+
+            return status;
         }
     }
 }
