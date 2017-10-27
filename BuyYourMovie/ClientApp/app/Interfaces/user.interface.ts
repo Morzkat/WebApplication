@@ -2,5 +2,6 @@
 {
     id: number,
     email: string,
-    pw:number
+    token:string,
+    level:number
 }

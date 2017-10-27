@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BuyYourMovie.DataLayer;
 using BuyYourMovie.Models;
 using Microsoft.Extensions.Configuration;
+using System.Data;
 
 namespace BuyYourMovie.DataLayer
 {
@@ -65,7 +66,8 @@ namespace BuyYourMovie.DataLayer
                             Convert.ToInt32(reader["id"]),
                             reader["userEmail"].ToString(),
                             reader["userPw"].ToString(),
-                            reader["token"].ToString()
+                            reader["token"].ToString(),
+                            Convert.ToInt32(reader["level"])
                             );        
                     }
                 }
@@ -77,26 +79,22 @@ namespace BuyYourMovie.DataLayer
             return user;
         }
 
-        public User GetByUserNameAndPw(string userEmail, string userPw)
+        public User GetByToken(string token)
         {
             User user = null;
 
-            if (userEmail != " " && userPw != " ")
+            if (token != " ")
             {
                 //Open the connection
                 connection.Open();
 
                 //Params for the search / Made a real_escape_string
-                SqlParameter[] sqlParameter = new SqlParameter[2];
-
-                sqlParameter[0] = new SqlParameter("userEmail", userEmail);
-                sqlParameter[1] = new SqlParameter("userPw", userPw);
+                SqlParameter sqlParameter = new SqlParameter("token", token);
 
                 //A Sql command o Query|Assign the query
-                SqlCommand command = new SqlCommand("SELECT * FROM Users", connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE token = @token", connection);
                 //Add the parameter to the query
-                command.Parameters.Add(sqlParameter[0]);
-                command.Parameters.Add(sqlParameter[1]);
+                command.Parameters.Add(sqlParameter);
 
                 //Get all the values of the reader all the values came from the DB
                 using (var reader = command.ExecuteReader())
@@ -110,7 +108,8 @@ namespace BuyYourMovie.DataLayer
                             Convert.ToInt32(reader["id"]),
                             reader["userEmail"].ToString(),
                             reader["userPw"].ToString(),
-                            reader["token"].ToString()
+                            reader["token"].ToString(),
+                            Convert.ToInt32(reader["level"])
                             );
                     }
                 }
@@ -122,9 +121,56 @@ namespace BuyYourMovie.DataLayer
             return user;
         }
 
-        public bool Post(User newLog)
+        public Boolean Post(User newLog)
         {
-            throw new NotImplementedException();
+            bool status = false;
+            if (newLog != null)
+            {
+
+                //Params for the insert / Made a real_escape_string
+                SqlParameter[] sqlParameter = new SqlParameter[3];
+                //Adding all params
+                sqlParameter[0] = new SqlParameter("@userEmail", newLog.userEmail);
+                sqlParameter[1] = new SqlParameter("@userPw", newLog.userPw);
+                sqlParameter[2] = new SqlParameter("@token", newLog.userEmail);
+                //Assign the query
+                var query = "insert into Users (userEmail, userPw, token) VALUES " +
+                    "(@userEmail, @userPw, @token);";
+                //Add the parameter to the query
+
+                using (SqlConnection conne = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = conne;
+                        command.CommandType = CommandType.Text;
+                        command.CommandText = query;
+                        //Parameters added to the command
+                        command.Parameters.Add(sqlParameter[0]);
+                        command.Parameters.Add(sqlParameter[1]);
+                        command.Parameters.Add(sqlParameter[2]);
+                        
+                        try
+                        {
+                            //Open the connection
+                            conne.Open();
+                            command.ExecuteNonQuery();
+                            //Close the connection
+                            conne.Close();
+                            //
+                            status = true;
+                        }
+
+                        catch (SqlException e)
+                        {
+                            Console.WriteLine("Error BD");
+                        }
+                    }
+                }
+
+            }
+
+            return status;
         }
 
         public bool Put(User updateLog, int id)

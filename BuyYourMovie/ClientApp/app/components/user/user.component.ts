@@ -1,4 +1,8 @@
-﻿import { Component } from '@angular/core';
+﻿//Angular Components
+import { Component } from '@angular/core';
+
+//App Interfaces
+import { IUser } from './../../interfaces/user.interface';
 
 @Component
     ({
@@ -8,8 +12,9 @@
 
 export class UserComponent
 {
+    User: IUser;
     constructor()
     {
-
+        
     }
 }

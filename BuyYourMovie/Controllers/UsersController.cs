@@ -23,13 +23,10 @@ namespace BuyYourMovie.Controllers
             data = new UserData(configuration);
         }
         // GET: api/users
+        [Route("token")]
         [HttpGet("{token}")]
         public User Get(string token)
-        {
-            string userEmail = "test@test.com";
-            string userPw = "1234";
-            return data.GetByUserNameAndPw(userEmail, userPw);
-        }
+        {   return data.GetByToken(token);  }
 
         // GET api/users/5
         [HttpGet("{id}")]
@@ -40,12 +37,8 @@ namespace BuyYourMovie.Controllers
 
         // POST api/users
         [HttpPost]
-        public IEnumerable<User> Post([FromBody]string value)
-        {
-           
-
-            return data.GetAll();
-        }
+        public User Post([FromBody]User value)
+        {   return (data.Post(value)) ? data.GetByToken(value.userEmail) : null;   }
 
         // PUT api/users/5
         [HttpPut("{id}")]
