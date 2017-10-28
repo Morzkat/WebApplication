@@ -120,22 +120,25 @@ namespace BuyYourMovie.DataLayer
             return user;
         }
 
-        public User GetByToken(string token)
+        public User GetByToken(string userEmail, string pw)
         {
             User user = null;
 
-            if (token != " ")
+            if (userEmail != " " && pw != " ")
             {
                 //Open the connection
                 connection.Open();
 
                 //Params for the search / Made a real_escape_string
-                SqlParameter sqlParameter = new SqlParameter("token", token);
+                SqlParameter[] sqlParameter = new SqlParameter[2];
+                sqlParameter[0] = new SqlParameter("@userEmail", userEmail);
+                sqlParameter[1] = new SqlParameter("@pw", pw);
 
                 //A Sql command o Query|Assign the query
-                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE token = @token", connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM Users WHERE userEmail = @userEmail AND userPw = @pw", connection);
                 //Add the parameter to the query
-                command.Parameters.Add(sqlParameter);
+                command.Parameters.Add(sqlParameter[0]);
+                command.Parameters.Add(sqlParameter[1]);
 
                 //Get all the values of the reader all the values came from the DB
                 using (var reader = command.ExecuteReader())

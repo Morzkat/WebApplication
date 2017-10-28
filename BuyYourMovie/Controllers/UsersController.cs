@@ -25,19 +25,19 @@ namespace BuyYourMovie.Controllers
 
         // GET: api/users
         [Route("token")]
-        [HttpGet("{token}")]
-        public User Get(string token)
-        {   return data.GetByToken(token);  }
+        [HttpGet("{user, pw}")]
+        public User Get(string user, string pw)
+        {   return data.GetByToken(user, pw);  }
         
         // POST api/users
         [HttpPost]
         public User Post([FromBody]User value)
-        {   return (data.Post(value)) ? data.GetByToken(value.token) : null;   }
+        {   return (data.Post(value)) ? data.GetByToken(value.userEmail, value.userPw) : null;   }
 
         // PUT api/users/5
         [HttpPut("{id}")]
         public User Put(int id, [FromBody]User value)
-        {   return (data.Put(value, id) ? data.GetByToken(value.token) : null);   }
+        {   return (data.Put(value, id) ? data.GetByToken(value.userEmail, value.userPw) : null);   }
 
         // DELETE api/users/5
         [HttpDelete("{id}")]

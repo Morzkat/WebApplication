@@ -1,6 +1,7 @@
 ﻿//Angular Components
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 //App Components
 import { MovieService } from './../../services/movie.service';
@@ -20,14 +21,14 @@ export class MovieComponent
     newMovie: IMovie;
     
 
-    constructor(private movieService: MovieService)
+    constructor(private movieService: MovieService, private router: Router)
     {
 
     }
 
     addNewMovie(movieName: string, movieSipnosis: string, movieGender: string, moviePublished: string, image: string, starts:number)
     {
-        let id: number = 1;
+      let id: number = 1;
       this.newMovie =
           {
             id,
@@ -37,11 +38,10 @@ export class MovieComponent
             movieGender,
             image,
             starts
-        };
+          };
 
       this.movieService.postMovie(this.newMovie);
-
-      console.log(this.newMovie);
+      this.router.navigateByUrl('/home');
       
     }
 }

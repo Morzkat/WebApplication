@@ -1,15 +1,20 @@
+//Angular Components
 import { Component, OnInit } from '@angular/core';
 
-//Movie Service
+//Angular Material
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
+//Services
 import { MovieService } from './../../services/movie.service';
 import { UserService } from './../../services/user.service';
-
 
 /*Interfaces*/
 //Movie Interface
 import { IMovie } from './../../Interfaces/movie.interface';
 import { IUser } from './../../Interfaces/user.interface';
 
+//
+import { UserControl } from './../userControl'; 
 
 @Component({
     selector: 'home',
@@ -24,8 +29,8 @@ export class HomeComponent implements OnInit
     //user
     User: IUser;
     //user status
-    userStatus: boolean = false;
-    constructor(private movieService: MovieService )
+    userStatus: boolean = UserControl.getUserStatus;
+    constructor(private movieService: MovieService)
     {
 
     }
@@ -33,6 +38,7 @@ export class HomeComponent implements OnInit
     ngOnInit()
     {
         this.getAllMovies();
+        
     }
 
     getAllMovies()
@@ -71,11 +77,10 @@ export class HomeComponent implements OnInit
             });
         
         this.getAllMovies();
-       
     }
 
     movieToPut(oldMovie: IMovie)
     {
         this.updatedMovie = oldMovie;
-    }
+    } 
 }

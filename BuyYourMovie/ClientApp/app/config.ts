@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 
 export class UrlConstans
 {
-
     public static get getServer(): string { return "http://localhost:31280/" };
     public static get getApiUrl(): string { return "api/" };
-    public static get serverWithApiUrl(): string { return this.getServer + this.getApiUrl };
+    public static get serverWithApiUrl(): string { return this.getServer + this.getApiUrl }; 
 }

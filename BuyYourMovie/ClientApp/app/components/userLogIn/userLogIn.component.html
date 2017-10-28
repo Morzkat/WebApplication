@@ -1,0 +1,14 @@
+﻿<h2>Log In</h2>
+
+<form (submit)="logIn(email.value, pw.value)">
+    <div class="col-lg-4">
+        
+        <label class="form-group">Email</label><br />
+        <input type="text" class="form-control" #email/><br />
+
+        <label class="form-group">Password</label><br />
+        <input type="password" class="form-control" #pw /><br />
+
+        <input type="submit" value="Log In" class="btn btn-success" />
+    </div>
+</form>

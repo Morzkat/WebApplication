@@ -84,7 +84,7 @@ namespace BuyYourMovie.DataLayer
             //A list of movies
             List<Movie> movies = new List<Movie>();
             //A Sql command o Query|
-            SqlCommand command = new SqlCommand("SELECT * FROM Movie", connection);
+            SqlCommand command = new SqlCommand("SELECT * FROM Movie ORDER BY id DESC", connection);
             
             //Get all the values of the reader all the values came from the DB
             using (var reader = command.ExecuteReader())
@@ -171,7 +171,7 @@ namespace BuyYourMovie.DataLayer
                 //Params for the search / Made a real_escape_string
                 SqlParameter sqlParameter = new SqlParameter("@movieGender", movieGender);
                 //A Sql command o Query|Assign the query
-                SqlCommand command = new SqlCommand("SELECT * FROM Movie WHERE movieGender = @movieGender", connection); ;
+                SqlCommand command = new SqlCommand("SELECT * FROM Movie WHERE movieGender = @movieGender ORDER BY id DESC", connection); ;
                 //
                 
                 //Add the parameter to the query

@@ -12,7 +12,8 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { CategoryComponent } from './components/category/category.component';
 import { MovieComponent } from './components/movie/movie.component';
-import { UserComponent } from './components/user/user.component';
+import { UserSignInComponent } from './components/userSignIn/userSignIn.component';
+import { UserLogInComponent } from './components/userLogIn/userLogIn.component';
 
 //App services
 import { MovieService } from './services/movie.service';
@@ -25,7 +26,8 @@ const appRoutes:Routes =
     { path: 'home', component: HomeComponent },
     { path: 'category', component: CategoryComponent },
     { path: 'newMovie', component: MovieComponent },
-    { path: 'signIn', component: UserComponent },
+    { path: 'signIn', component: UserSignInComponent },
+    { path: 'logIn', component: UserLogInComponent },
     { path: '**', redirectTo: 'home' }
 ]
 
@@ -37,7 +39,8 @@ const appRoutes:Routes =
         HomeComponent,
         CategoryComponent,
         MovieComponent,
-        UserComponent
+        UserSignInComponent,
+        UserLogInComponent
     ],
 
     imports:

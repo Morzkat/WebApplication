@@ -6,11 +6,11 @@ import { IUser } from './../../interfaces/user.interface';
 
 @Component
     ({
-    selector: 'app-user',
-    templateUrl:'user.component.html'
+    selector: 'signIn-user',
+    templateUrl:'userSignIn.component.html'
     })
 
-export class UserComponent
+export class UserSignInComponent
 {
     User: IUser;
     constructor()

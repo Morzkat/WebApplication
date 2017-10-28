@@ -35,13 +35,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\components\user\user.component.ts" />
+    <None Remove="ClientApp\app\components\userLogIn\userLogIn.component.ts" />
     <None Remove="ClientApp\app\Interfaces\user.interface.ts" />
     <None Remove="ClientApp\app\services\user.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\components\user\user.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\userLogIn\userLogIn.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\userSignIn\userSignIn.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\Interfaces\user.interface.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\user.service.ts" />
   </ItemGroup>
