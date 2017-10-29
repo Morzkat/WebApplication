@@ -5,7 +5,7 @@ namespace BuyYourMovie.Models
     {
         public User(int Id, string userEmail, string userPw, string token, int level)
         {
-            this.Id = Id;
+            this.id = Id;
             this.userEmail = userEmail;
             this.userPw = userPw;
             this.token = token;
@@ -13,7 +13,7 @@ namespace BuyYourMovie.Models
         }
 
         //User params
-        public int Id { get; set; }
+        public int id { get; set; }
         public string userEmail { get; set; }
         public string userPw { get; set; }
         public string token { get; set; }

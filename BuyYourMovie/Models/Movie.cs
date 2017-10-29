@@ -7,7 +7,7 @@ namespace BuyYourMovie.Models
     {
         public Movie(int id, string movieName, string movieSiponis, string movieGender, string moviePublished, string image, int starts)
         {
-            this.Id = id;
+            this.id = id;
             this.movieName = movieName;
             this.movieSipnosis = movieSiponis;
             this.movieGender = movieGender;
@@ -18,7 +18,7 @@ namespace BuyYourMovie.Models
         
         //movie params
         [Key]
-        public int Id { get; set; }
+        public int id { get; set; }
         public string movieName { get; set; }
         public string movieSipnosis { get; set; }
         public string movieGender { get; set; }

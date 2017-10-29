@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using BuyYourMovie.Models;
+using BuyYourMovie.DataLayer;
+
 
 namespace BuyYourMovie
 {
@@ -24,6 +21,7 @@ namespace BuyYourMovie
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             //singleton behavior
             services.AddSingleton<IConfiguration>(Configuration);
 
@@ -37,6 +35,11 @@ namespace BuyYourMovie
                     .AllowAnyOrigin()
                    );
             });
+
+            //Contexts
+            services.AddDbContext<ActorsContext>(optActorsContext => optActorsContext.UseSqlServer(Configuration.GetConnectionString("localDB")));
+            services.AddDbContext<MoviesContext>(optMoviesContext => optMoviesContext.UseSqlServer(Configuration.GetConnectionString("localDB")));
+            services.AddDbContext<MovieAndActorsContext>(optMovieAndActorsContext => optMovieAndActorsContext.UseSqlServer(Configuration.GetConnectionString("localDB")));
 
             services.AddMvc();
         }

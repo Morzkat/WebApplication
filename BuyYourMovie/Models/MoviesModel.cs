@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace BuyYourMovie.Models
 {
-    public class ActorsModel
+    public class MoviesModel
     {
         public int id { get; set; }
-        public string actorName { get; set; }
-        public string actorRole { get; set; }
+        public string movieName { get; set; }
+        public string movieGender { get; set; }
     }
 }
