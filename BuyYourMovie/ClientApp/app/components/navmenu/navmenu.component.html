@@ -36,6 +36,12 @@
                         <span class='glyphicon glyphicon-copy'></span> Add A Movie
                     </a>
                 </li>
+                
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/movies']">
+                        <span class='glyphicon glyphicon-copy'></span> Movies
+                    </a>
+                </li>
 
                 <li *ngIf=" !userStatus; then thenBlock else elseBlock"  ></li>
 

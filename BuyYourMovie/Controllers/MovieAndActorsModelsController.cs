@@ -15,17 +15,40 @@ namespace BuyYourMovie.Controllers
     public class MovieAndActorsModelsController : Controller
     {
         private readonly MovieAndActorsContext _context;
+        private readonly MoviesContext _movieContext;
+        private readonly ActorsContext _actorContext;
 
-        public MovieAndActorsModelsController(MovieAndActorsContext context)
+        public MovieAndActorsModelsController(MovieAndActorsContext context, ActorsContext actorsContext, MoviesContext moviesContext)
         {
             _context = context;
+            _movieContext = moviesContext;
+            _actorContext = actorsContext;
         }
+
+        /*
+             
+        var query = from x in db.Comments
+                    join y in db.Users on x.CommentsUserID equals y.UserID into z
+                    where x.CommentsItemID.Equals(ID)
+                    select new CommentsWithUserDetails
+                    {
+                        CommentsUserID = x.CommentsUserID,
+                        CommentsText = x.CommentsText,
+                        CommentsRating = x.CommentsRating,
+                        CommentsDate = x.CommentsDate,
+                        UserFirstName = y.FirstName,
+                        UserLastName = y.LastName,
+                        UserPictureURL = y.PictureURL
+                    };
+
+        return query;
+    }*/
 
         // GET: api/MovieAndActorsModels
         [HttpGet]
         public IEnumerable<MovieAndActorsModel> GetMovieAndActors()
         {
-            return _context.MovieAndActors;
+             return _context.MovieAndActors;
         }
 
         // GET: api/MovieAndActorsModels/5
