@@ -37,9 +37,6 @@ namespace BuyYourMovie
             });
 
             //Contexts
-            services.AddDbContext<ActorsContext>(optActorsContext => optActorsContext.UseSqlServer(Configuration.GetConnectionString("localDB")));
-            services.AddDbContext<MoviesContext>(optMoviesContext => optMoviesContext.UseSqlServer(Configuration.GetConnectionString("localDB")));
-            services.AddDbContext<MovieAndActorsContext>(optMovieAndActorsContext => optMovieAndActorsContext.UseSqlServer(Configuration.GetConnectionString("localDB")));
 
             services.AddMvc();
         }

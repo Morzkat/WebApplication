@@ -11,7 +11,6 @@ import { UrlConstans } from './../../app/config';
 //Interfaces
 //Movie Interface
 import { IMovie } from './../Interfaces/movie.interface';
-import { IActor } from './../Interfaces/actor.interface';
 
 /*Movie Component*/
 import { MovieComponent } from './../components/movie/movie.component';
