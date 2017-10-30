@@ -36,6 +36,7 @@
     <None Remove="ClientApp\app\Interfaces\actor.interface.ts" />
     <None Remove="ClientApp\app\Interfaces\movies.interface.ts" />
     <None Remove="ClientApp\app\Interfaces\user.interface.ts" />
+    <None Remove="ClientApp\app\services\movieAndActors.service.ts" />
     <None Remove="ClientApp\app\services\movies.service.ts" />
     <None Remove="ClientApp\app\services\user.service.ts" />
   </ItemGroup>
@@ -48,6 +49,7 @@
     <TypeScriptCompile Include="ClientApp\app\Interfaces\movies.interface.ts" />
     <TypeScriptCompile Include="ClientApp\app\Interfaces\user.interface.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\actors.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\movieAndActors.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\movies.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\user.service.ts" />
   </ItemGroup>

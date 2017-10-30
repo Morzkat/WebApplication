@@ -11,6 +11,7 @@ import { UrlConstans } from './../../app/config';
 //Interfaces
 //Movie Interface
 import { IMovie } from './../Interfaces/movie.interface';
+import { IActor } from './../Interfaces/actor.interface';
 
 /*Movie Component*/
 import { MovieComponent } from './../components/movie/movie.component';
@@ -22,37 +23,33 @@ export class MovieService {
 
     }
 
-    getAllMovies(): Observable<Array<IMovie>> {
-        return this.http.get(UrlConstans.serverWithApiUrl + "movies/")
+    getAllMoviesAndActors(): Observable<Array<IMovie>> {
+        return this.http.get(UrlConstans.serverWithApiUrl + "MovieAndActorsModels/")
             .map(response => response.json() as Array<IMovie>);
 
     }
-
-    getByGender(movieGender: string): Observable<Array<IMovie>> {
-        return this.http.get(UrlConstans.serverWithApiUrl + "movies/ByGender?movieGender=" + movieGender)
-            .map(response => response.json() as Array<IMovie>);
-    }
-
-    getMovieById(id: number): Observable<IMovie> {
-        return this.http.get(UrlConstans.serverWithApiUrl + "movies/" + id)
+    
+    getMoviesAndActorsById(id: number): Observable<IMovie> {
+        return this.http.get(UrlConstans.serverWithApiUrl + "MovieAndActorsModels/" + id)
             .map(response => response.json() as IMovie);
     }
 
-    postMovie(movie: IMovie) {
-        return this.http.post(UrlConstans.serverWithApiUrl + "movies", movie)
+    postMovie(movie: IMovie, actor: IActor)
+    {
+        return this.http.post(UrlConstans.serverWithApiUrl + "MovieAndActorsModels/movieName=", movie)
             .subscribe(res => res.json());
     }
 
     putMovie(movie: IMovie, id: number): Observable<any> {
-        return this.http.put(UrlConstans.serverWithApiUrl + "movies/" + id, movie)
+        return this.http.put(UrlConstans.serverWithApiUrl + "MovieAndActorsModels/" + id, movie)
             .map(res => res.json());
     }
 
-    deleteMovie(id: number) {
-        return this.http.delete(UrlConstans.serverWithApiUrl + "movies/" + id)
+    deleteMovie(id: number)
+    {
+        return this.http.delete(UrlConstans.serverWithApiUrl + "MovieAndActorsModels/" + id)
             .map(res => res.json());
     }
-
 
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure

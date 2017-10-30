@@ -24,43 +24,25 @@ namespace BuyYourMovie.Controllers
             _movieContext = moviesContext;
             _actorContext = actorsContext;
         }
-
-        /*
-             
-        var query = from x in db.Comments
-                    join y in db.Users on x.CommentsUserID equals y.UserID into z
-                    where x.CommentsItemID.Equals(ID)
-                    select new CommentsWithUserDetails
-                    {
-                        CommentsUserID = x.CommentsUserID,
-                        CommentsText = x.CommentsText,
-                        CommentsRating = x.CommentsRating,
-                        CommentsDate = x.CommentsDate,
-                        UserFirstName = y.FirstName,
-                        UserLastName = y.LastName,
-                        UserPictureURL = y.PictureURL
-                    };
-
-        return query;
-    }*/
-
+        
         // GET: api/MovieAndActorsModels
         [HttpGet]
-        public IEnumerable<MovieAndActorsModel> GetMovieAndActors()
+        public IEnumerable<MovieWithActorModel> GetMovieAndActors()
         {
-             return _context.MovieAndActors;
+
+            return _context.getMoviesAndActors(_context,_actorContext,_movieContext);
         }
 
         // GET: api/MovieAndActorsModels/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMovieAndActorsModel([FromRoute] int id)
+        public IActionResult GetMovieAndActorsModel([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var movieAndActorsModel = await _context.MovieAndActors.SingleOrDefaultAsync(m => m.id == id);
+            var movieAndActorsModel = _context.getMoviesAndActorsById(id, _context, _actorContext, _movieContext);
 
             if (movieAndActorsModel == null)
             {

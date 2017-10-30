@@ -16,7 +16,7 @@ import { IActor } from './../Interfaces/actor.interface';
 import { MovieComponent } from './../components/movie/movie.component';
 
 @Injectable()
-export class MovieService {
+export class ActorService {
 
     constructor(private http: Http, private http2: HttpClient) {
 
